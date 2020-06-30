@@ -1,4 +1,7 @@
-// LINE developersのメッセージ送受信設定に記載のアクセストークン
+//
+// <https://blog.adachin.me/archives/10188> を参考に作成
+//
+var get_interval = 1; //〇分前～現在の新着メールを取得 #--トリガーをこれに合わせておく！！
 var lineToken = '';
 function get_token(){
   var fileName = "line-family-pp.json.txt";
@@ -11,11 +14,6 @@ function get_token(){
   }
 }
 
-//
-// <https://blog.adachin.me/archives/10188> を参考に作成
-//
-
-var get_interval = 1; //〇分前～現在の新着メールを取得 #--トリガーをこれに合わせておく！！
  
 function send_line(Me){
   var payload = {'message' :   Me};
