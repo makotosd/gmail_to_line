@@ -1,5 +1,15 @@
 // LINE developersのメッセージ送受信設定に記載のアクセストークン
-var lineToken = '************************************************';
+var lineToken = '';
+function get_token(){
+  var fileName = "line-family-pp.json.txt";
+  var files = DriveApp.getFilesByName(fileName);
+  if (files.hasNext()) {
+    var file = files.next();
+    var content = file.getBlob().getDataAsString();
+    json = JSON.parse(content);
+    lineToken = json[0]["pp"]
+  }
+}
 
 //
 // <https://blog.adachin.me/archives/10188> を参考に作成
@@ -26,8 +36,8 @@ function fetchContactMail() {
   //検索条件指定
   //var strTerms = '(is:unread from:machinist-noreply@iij.ad.jp after:'+ time_term + ')';
   //var strTerms = '(is:unread from:machinist-noreply@iij.ad.jp after:'+ time_term.toString() + ')';
-  //var strTerms = '(is:unread subject:"Machinist 監視" after:'+ time_term.toString() + ')';
-  var strTerms = 'subject:"Machinist 監視" after:1593319482';
+  var strTerms = '(is:unread subject:"Machinist 監視" after:'+ time_term.toString() + ')';
+  //var strTerms = 'subject:"Machinist 監視" after:1593319482';
   console.log(strTerms);
   
   //取得
@@ -77,12 +87,13 @@ function fetchContactMail() {
 }
  
 function main() {
+  get_token();
   new_Me = fetchContactMail()
   if(new_Me.length > 0){
     for(var i = 0; i < new_Me.length; i++){
       for(var j = 0; j < new_Me[i].length; j++){
         if(new_Me[i][j] != null){ 
-          //send_line(new_Me[i][j])
+          send_line(new_Me[i][j])
           console.log("i, j: " + i + ", " + j + ": send msg thru line: " + new_Me[i][j])
         }else{
           console.log("i, j: " + i + ", " + j + ": value is empty")
