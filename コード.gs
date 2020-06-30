@@ -34,7 +34,7 @@ function fetchContactMail() {
   //検索条件指定
   //var strTerms = '(is:unread from:machinist-noreply@iij.ad.jp after:'+ time_term + ')';
   //var strTerms = '(is:unread from:machinist-noreply@iij.ad.jp after:'+ time_term.toString() + ')';
-  var strTerms = '(is:unread subject:"Machinist 監視" after:'+ time_term.toString() + ')';
+  var strTerms = '(subject:"Machinist 監視" after:'+ time_term.toString() + ')';
   //var strTerms = 'subject:"Machinist 監視" after:1593319482';
   console.log(strTerms);
   
