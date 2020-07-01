@@ -1,7 +1,7 @@
 //
 // <https://blog.adachin.me/archives/10188> を参考に作成
 //
-var get_interval = 1; //〇分前～現在の新着メールを取得 #--トリガーをこれに合わせておく！！
+var get_interval = 10; //〇分前～現在の新着メールを取得 #--トリガーをこれに合わせておく！！
 var lineToken = '';
 function get_token(){
   var fileName = "line-family-pp.json.txt";
@@ -29,13 +29,13 @@ function send_line(Me){
 function fetchContactMail() {
   //取得間隔
   var now_time= Math.floor(new Date().getTime() / 1000) ;//現在時刻を変換
-  var time_term = now_time - (60 * get_interval); //変換
+  var time_term = now_time - (60 * get_interval * 2); //変換
  
   //検索条件指定
   //var strTerms = '(is:unread from:machinist-noreply@iij.ad.jp after:'+ time_term + ')';
   //var strTerms = '(is:unread from:machinist-noreply@iij.ad.jp after:'+ time_term.toString() + ')';
   var strTerms = '(subject:"Machinist 監視" after:'+ time_term.toString() + ')';
-  //var strTerms = 'subject:"Machinist 監視" after:1593319482';
+  //var strTerms = 'subject:"Machinist 監視" after:1593591245';
   console.log(strTerms);
   
   //取得
